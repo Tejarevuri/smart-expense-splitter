@@ -112,6 +112,7 @@ if (existsSync(frontendPath)) {
     app.use(express.static(frontendPath));
     // Serve index.html for all non-API routes
     // Change '*' to '(.*)'
+// Change '*' to '(.*)'
 app.get('(.*)', (req, res) => {
     res.sendFile(path.join(__dirname, '../frontend/build', 'index.html'));
 });
