@@ -115,9 +115,11 @@ if (existsSync(frontendPath)) {
     app.use(express.static(frontendPath));
 
     // Using a direct RegExp to bypass the path-to-regexp parser entirely
-    app.get(/^(?!\/api).+/, (req, res) => {
-        res.sendFile(path.join(__dirname, "../frontend/build", "index.html"));
-    });
+    // --- THE FIX ---
+// This tells the server: "If the request is NOT for an /api route, send the React frontend"
+app.get(/^\/(?!api).*/, (req, res) => {
+    res.sendFile(path.join(__dirname, "../frontend/build", "index.html"));
+});
 }
 
 
