@@ -107,16 +107,18 @@ app.get("/debts", async (req, res) => {
 });
 
 // --- Static Frontend Serving ---
+// --- Static Frontend Serving ---
+// --- Static Frontend Serving ---
 const frontendPath = path.join(__dirname, "../frontend/build");
+
 if (existsSync(frontendPath)) {
     app.use(express.static(frontendPath));
-    // Serve index.html for all non-API routes
-    // Change '*' to '(.*)'
-// Change '*' to '(.*)'
-// Change the previous app.get to this named wildcard version:
-app.get('/:any*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../frontend/build', 'index.html'));
-});
+
+    // Using a direct RegExp to bypass the path-to-regexp parser entirely
+    app.get(/^(?!\/api).+/, (req, res) => {
+        res.sendFile(path.join(__dirname, "../frontend/build", "index.html"));
+    });
 }
+
 
 app.listen(PORT, () => console.log(`🚀 Server running on Port ${PORT}`));
