@@ -23,9 +23,16 @@ On the backend, a robust Node.js engine calculates complex peer-to-peer debts an
 - **Frontend:** React.js (Functional Components, Hooks, CSS Grid/Flexbox)
 - **Backend:** Node.js, Express.js
 - **Database:** Local JSON File System
+- 
 
 ## 🚀 Installation & Setup
-
+Backend-cd backend
+npm install
+node server.js
+--------------
+Frontend-cd frontend
+npm install
+npm start
 1. **Clone the repository**
    ```bash
    git clone [https://github.com/Tejarevuri/smart-expense-splitter.git](https://github.com/Tejarevuri/smart-expense-splitter.git)
