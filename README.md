@@ -29,7 +29,7 @@ On the backend, a robust Node.js engine calculates complex peer-to-peer debts an
 Backend-cd backend
 npm install
 node server.js
---------------
+
 Frontend-cd frontend
 npm install
 npm start
