@@ -4,8 +4,26 @@ const cors = require("cors");
 const path = require("path");
 
 const app = express();
+const PORT = process.env.PORT || 5000;
+
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+    origin: "*",
+    methods: ["GET", "POST", "DELETE", "PUT"],
+    credentials: true
+}));
+
+// Serve static files from frontend build
+const frontendPath = path.join(__dirname, "../frontend/build");
+console.log("Looking for frontend at:", frontendPath);
+console.log("Frontend exists:", fs.existsSync(frontendPath));
+
+if (fs.existsSync(frontendPath)) {
+    app.use(express.static(frontendPath));
+    console.log("✅ Serving frontend from build folder");
+} else {
+    console.log("⚠️ Frontend build folder not found. Some features may not work.");
+}
 
 const DATA_DIR = path.join(__dirname, "data");
 const MEMBERS_FILE = path.join(DATA_DIR, "members.json");
@@ -68,4 +86,15 @@ app.get("/debts", (req, res) => {
 app.get('/', (req, res) => {
     res.send('🚀 Smart Expense Splitter API is running successfully!');
 });
-app.listen(5000, () => console.log("Server running on Port 5000"));
+
+// Serve frontend for all other routes (client-side routing)
+app.get('*', (req, res) => {
+    const indexPath = path.join(__dirname, "../frontend/build/index.html");
+    if (fs.existsSync(indexPath)) {
+        res.sendFile(indexPath);
+    } else {
+        res.status(404).json({ error: "Frontend not built. Run: cd frontend && npm run build" });
+    }
+});
+
+app.listen(PORT, () => console.log(`Server running on Port ${PORT}`));

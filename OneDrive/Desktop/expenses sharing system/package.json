@@ -1,0 +1,14 @@
+{
+  "name": "expenses-sharing-system",
+  "version": "1.0.0",
+  "description": "Expense Sharing System with React Frontend and Express Backend",
+  "scripts": {
+    "start": "concurrently \"npm run backend\" \"npm run frontend\"",
+    "backend": "cd backend && npm start",
+    "frontend": "cd frontend && npm start",
+    "install-deps": "npm install && cd backend && npm install && cd ../frontend && npm install"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
