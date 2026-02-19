@@ -113,7 +113,8 @@ if (existsSync(frontendPath)) {
     // Serve index.html for all non-API routes
     // Change '*' to '(.*)'
 // Change '*' to '(.*)'
-app.get('(.*)', (req, res) => {
+// Change the previous app.get to this named wildcard version:
+app.get('/:any*', (req, res) => {
     res.sendFile(path.join(__dirname, '../frontend/build', 'index.html'));
 });
 }
