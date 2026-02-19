@@ -111,10 +111,10 @@ const frontendPath = path.join(__dirname, "../frontend/build");
 if (existsSync(frontendPath)) {
     app.use(express.static(frontendPath));
     // Serve index.html for all non-API routes
-    app.get("*", (req, res, next) => {
-        if (req.path.startsWith('/api')) return next(); // Don't serve HTML for API calls
-        res.sendFile(path.join(frontendPath, "index.html"));
-    });
+    // Change '*' to '(.*)'
+app.get('(.*)', (req, res) => {
+    res.sendFile(path.join(__dirname, '../frontend/build', 'index.html'));
+});
 }
 
 app.listen(PORT, () => console.log(`🚀 Server running on Port ${PORT}`));
