@@ -1,3 +1,4 @@
+<img width="1834" height="833" alt="image" src="https://github.com/user-attachments/assets/68645ee3-e8b7-45fe-98b0-b0d531c44ef8" />
 #  Smart Expense Splitter — iOS Glossy Edition
 
 > A premium Full-Stack expense management dashboard with a high-fidelity Glassmorphism UI.
